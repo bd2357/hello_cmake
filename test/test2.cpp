@@ -21,7 +21,7 @@ TEST_CASE( "do more hello tests" ) {
     hello("Terry");
     
     std::cout.rdbuf(coutbuf);
-    REQUIRE( out.str() == "Hello, Bob!\nHello, you!\n");
+    REQUIRE( out.str() == "Hello, Bob!\nHello, Terry!\n");
 
     }
 
