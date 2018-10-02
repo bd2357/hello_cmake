@@ -27,9 +27,13 @@ int funcWithIntParam(int val)
     return val;
 }
 
+
+
+static std::string pairStr;
+
 int funcWithPairParam(std::pair<int, const std::string> val)
 {
-    REQUIRE(val.second == "bar");
+    REQUIRE(val.second == pairStr);
     return val.first;
 
 }
@@ -72,6 +76,8 @@ SCENARIO( "An integer that can carry its own name", "[my_meta]"   ) {
 
 	WHEN("the object is used in place of a pair it is cast correctly")
 	{
+            pairStr = foo.getMeta();
+
 	    int ret = funcWithPairParam(foo);
 	    REQUIRE(ret == 42);
 	}

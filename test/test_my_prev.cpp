@@ -29,8 +29,13 @@ TEST_CASE( "test my float wrapper class" ) {
 
     REQUIRE( var == fval);
     var = var + 5.0;
-    REQUIRE( var == fval+5.0f);
+    REQUIRE( var == Approx( fval+5.0f ));
     REQUIRE(var.getPrev() == fval);
+
+    var = 1.0/3;
+    var *= 5;
+    REQUIRE( var == Approx(5.0/3));
+    REQUIRE( var.getPrev() == Approx(1.0/3.0));
     
 }
 
