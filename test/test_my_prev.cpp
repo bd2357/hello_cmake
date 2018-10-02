@@ -1,20 +1,22 @@
 //#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
-
-#include <sstream>
-#include <iostream>
 #include "my_prev.h"
-#include "my_symbol.h"
 
 TEST_CASE( "test my int wrapper class" ) {
     
     MyPrevWrapper<int> var;
+    MyPrevWrapper<int> var2(15);
     int ival;
     var = 7;
     ival = var;
-    std::cout << var << "=" << ival << std::endl;
 
+    REQUIRE(var < var2);
     REQUIRE( var == ival);
+    var = 9;
+    REQUIRE( var.getPrev() == ival);
+    var = var + 10;
+    REQUIRE( var.getPrev() == 9);
+    REQUIRE (var == 19);
     
 }
 
@@ -24,18 +26,11 @@ TEST_CASE( "test my float wrapper class" ) {
     float fval;
     var = 3.14;
     fval = var;
-    std::cout << var << "=" << fval << std::endl;
 
     REQUIRE( var == fval);
+    var = var + 5.0;
+    REQUIRE( var == fval+5.0f);
+    REQUIRE(var.getPrev() == fval);
     
 }
 
-TEST_CASE( "test my meta wrapper" ) {
-    
-    MySymbolWrapper<float,std::string> var(3.14159,"Pi");
-    float fval = var;
-    std::cout << var.getMeta()<< " "  << var << "=" << fval << std::endl;
-
-    REQUIRE( var == fval);
-    
-}

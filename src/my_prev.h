@@ -14,6 +14,41 @@ public:
 	    this->value = value; 
 	    return *this;
     }
+    MyPrevWrapper& operator +=(const T& value)
+    {
+	    this->prev = this->value;
+	    this->value += value; 
+	    return *this;
+    }
+
+    MyPrevWrapper& operator -=(const T& value)
+    {
+	    this->prev = this->value;
+	    this->value -= value; 
+	    return *this;
+    }
+
+    MyPrevWrapper& operator *=(const T& value)
+    {
+	    this->prev = this->value;
+	    this->value *= value; 
+	    return *this;
+    }
+
+    MyPrevWrapper& operator /=(const T& value)
+    {
+	    this->prev = this->value;
+	    this->value /= value; 
+	    return *this;
+    }
+
+    MyPrevWrapper& operator %=(const T& value)
+    {
+	    this->prev = this->value;
+	    this->value %= value; 
+	    return *this;
+    }
+
     T getPrev() const {return prev;}
 
 private:
